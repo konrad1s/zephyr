@@ -1,0 +1,6 @@
+description: |
+    AMS ens210 Relative Humidity and Temperature Sensor
+
+compatible: "ams,ens210"
+
+include: [sensor-device.yaml, i2c-device.yaml]

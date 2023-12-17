@@ -1,0 +1,8 @@
+menuconfig ENS160
+	bool "ENS160 Digital Temperature and Humidity sensor"
+	default y
+	depends on DT_HAS_AMS_ENS160_ENABLED
+	select I2C
+	help
+	  Enable driver for ENS160 Digital Temperature and Humidity sensor.
+
