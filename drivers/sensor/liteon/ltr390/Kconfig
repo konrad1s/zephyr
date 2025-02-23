@@ -1,0 +1,42 @@
+menuconfig LTR390
+	bool "Lite-On LTR-390 Ambient/UV Sensor Driver"
+	default y
+	help
+	  Enable support for the Lite-On LTR-390 sensor.
+
+if LTR390
+
+config LTR390_TRIGGER
+	bool "Enable trigger support for LTR-390"
+	default y
+	help
+	  Enable interrupt (trigger) and threshold support for the LTR-390 sensor.
+
+if LTR390_TRIGGER
+
+choice LTR390_TRIGGER_MODE
+	prompt "Trigger processing mode for LTR-390"
+	help
+	  Select the mode for handling sensor interrupts.
+	config LTR390_TRIGGER_NONE
+		bool "No trigger processing"
+	config LTR390_TRIGGER_OWN_THREAD
+		bool "Own thread"
+	config LTR390_TRIGGER_GLOBAL_THREAD
+		bool "Global thread"
+	config LTR390_TRIGGER_DIRECT
+		bool "Direct processing (in interrupt context)"
+endchoice
+
+if LTR390_TRIGGER_OWN_THREAD
+	config LTR390_TRIGGER_THREAD_STACK_SIZE
+		int "Trigger thread stack size"
+		default 1024
+	config LTR390_TRIGGER_THREAD_PRIORITY
+		int "Trigger thread priority"
+		default 5
+endif
+
+endif # LTR390_TRIGGER
+
+endif # LTR390
