@@ -10,10 +10,6 @@
 #include <zephyr/sys/util.h>
 #include <zephyr/kernel.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /* Register addresses */
 #define LTR390_REG_MAIN_CTRL      0x00
 #define LTR390_REG_MEAS_RATE      0x04
@@ -32,46 +28,46 @@ extern "C" {
 #define LTR390_REG_THRESH_LOW_LSB 0x24
 
 /* Bit masks and shifts for MAIN_CTRL register */
-#define LTR390_MAIN_CTRL_SW_RESET_SHIFT 4
-#define LTR390_MAIN_CTRL_SW_RESET_MASK  BIT(4)
-#define LTR390_MAIN_CTRL_UVS_MODE_SHIFT 3
-#define LTR390_MAIN_CTRL_UVS_MODE_MASK  BIT(3)
-#define LTR390_MAIN_CTRL_ENABLE_SHIFT   1
-#define LTR390_MAIN_CTRL_ENABLE_MASK    BIT(1)
+#define LTR390_REG_MAIN_CTRL_SW_RESET_SHIFT 4
+#define LTR390_REG_MAIN_CTRL_SW_RESET_MASK  BIT(4)
+#define LTR390_REG_MAIN_CTRL_UVS_MODE_SHIFT 3
+#define LTR390_REG_MAIN_CTRL_UVS_MODE_MASK  BIT(3)
+#define LTR390_REG_MAIN_CTRL_ENABLE_SHIFT   1
+#define LTR390_REG_MAIN_CTRL_ENABLE_MASK    BIT(1)
 
 /* Bit masks and shifts for MEAS_RATE register */
-#define LTR390_MEAS_RATE_RES_SHIFT  4
-#define LTR390_MEAS_RATE_RES_MASK   GENMASK(6, 4)
-#define LTR390_MEAS_RATE_RATE_SHIFT 0
-#define LTR390_MEAS_RATE_RATE_MASK  GENMASK(2, 0)
+#define LTR390_REG_MEAS_RATE_RES_SHIFT  4
+#define LTR390_REG_MEAS_RATE_RES_MASK   GENMASK(6, 4)
+#define LTR390_REG_MEAS_RATE_RATE_SHIFT 0
+#define LTR390_REG_MEAS_RATE_RATE_MASK  GENMASK(2, 0)
 
 /* Bit masks and shifts for ALS_UVS_GAIN register */
-#define LTR390_ALS_UVS_GAIN_SHIFT 0
-#define LTR390_ALS_UVS_GAIN_MASK  GENMASK(2, 0)
+#define LTR390_REG_ALS_UVS_GAIN_RANGE_SHIFT 0
+#define LTR390_REG_ALS_UVS_GAIN_RANGE_MASK  GENMASK(2, 0)
 
 /* Bit masks and shifts for PART_ID register */
-#define LTR390_PART_ID_NUM_SHIFT 4
-#define LTR390_PART_ID_NUM_MASK  GENMASK(7, 4)
-#define LTR390_PART_ID_REV_SHIFT 0
-#define LTR390_PART_ID_REV_MASK  GENMASK(3, 0)
+#define LTR390_REG_PART_ID_NUM_SHIFT 4
+#define LTR390_REG_PART_ID_NUM_MASK  GENMASK(7, 4)
+#define LTR390_REG_PART_ID_REV_SHIFT 0
+#define LTR390_REG_PART_ID_REV_MASK  GENMASK(3, 0)
 
 /* Bit masks and shifts for MAIN_STATUS register */
-#define LTR390_MAIN_STATUS_PWR_ON_SHIFT 5
-#define LTR390_MAIN_STATUS_PWR_ON_MASK  BIT(5)
-#define LTR390_MAIN_STATUS_INT_SHIFT    4
-#define LTR390_MAIN_STATUS_INT_MASK     BIT(4)
-#define LTR390_MAIN_STATUS_DATA_SHIFT   3
-#define LTR390_MAIN_STATUS_DATA_MASK    BIT(3)
+#define LTR390_REG_MAIN_STATUS_PWR_ON_SHIFT 5
+#define LTR390_REG_MAIN_STATUS_PWR_ON_MASK  BIT(5)
+#define LTR390_REG_MAIN_STATUS_INT_SHIFT    4
+#define LTR390_REG_MAIN_STATUS_INT_MASK     BIT(4)
+#define LTR390_REG_MAIN_STATUS_DATA_SHIFT   3
+#define LTR390_REG_MAIN_STATUS_DATA_MASK    BIT(3)
 
 /* Bit masks and shifts for INT_CFG register */
-#define LTR390_INT_CFG_INT_SEL_SHIFT    4
-#define LTR390_INT_CFG_INT_SEL_MASK     GENMASK(5, 4)
-#define LTR390_INT_CFG_INT_ENABLE_SHIFT 2
-#define LTR390_INT_CFG_INT_ENABLE_MASK  BIT(2)
+#define LTR390_REG_INT_CFG_INT_SEL_SHIFT    4
+#define LTR390_REG_INT_CFG_INT_SEL_MASK     GENMASK(5, 4)
+#define LTR390_REG_INT_CFG_INT_ENABLE_SHIFT 2
+#define LTR390_REG_INT_CFG_INT_ENABLE_MASK  BIT(2)
 
 /* Bit masks and shifts for INT_PST register */
-#define LTR390_INT_PST_PERSIST_SHIFT 4
-#define LTR390_INT_PST_PERSIST_MASK  GENMASK(7, 4)
+#define LTR390_REG_INT_PST_PERSIST_SHIFT 4
+#define LTR390_REG_INT_PST_PERSIST_MASK  GENMASK(7, 4)
 
 /* Expected sensor IDs */
 #define LTR390_PART_ID_EXPECTED  0xB2
@@ -124,9 +120,5 @@ int ltr390_trigger_init(const struct device *dev);
 int ltr390_threshold_set(const struct device *dev, const struct sensor_value *lower,
 			 const struct sensor_value *upper);
 #endif /* CONFIG_LTR390_TRIGGER */
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif /* ZEPHYR_DRIVERS_SENSOR_LTR390_LTR390_H_ */
